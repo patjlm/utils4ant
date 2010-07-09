@@ -5,7 +5,7 @@ This project (will) host the following utils
   * AntLauncher : how to launch ant from Java
  * Tasks
   * FastCopy : file copy, faster than ant's original
-  * Timer : measure elapsed time for nested tasks
+  * [Timer] : measure elapsed time for nested tasks
  * Filters
   * EchoFilter : outputs data during ant filtering. Useful for debuging
  * Mappers
