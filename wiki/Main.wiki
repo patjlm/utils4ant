@@ -1,13 +1,6 @@
-#Main page for the utils4ant wiki
+Welcome on the !Utils4Ant wiki. 
 
-= Introduction =
-
-Welcome on the Utils4Ant wiki. 
-
-
-= Details =
-
-This project (will host) the following utils
+This project (will) host the following utils
  * Java API
   * AntLauncher : how to launch ant from Java
  * Tasks
