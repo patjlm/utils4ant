@@ -7,6 +7,7 @@ This project (will) host the following utils
  * Tasks
   * FastCopy : file copy, faster than ant's original
   * [Timer] : measure elapsed time for nested tasks
+  * [GC] : allows to run a garbage collection in the Ant JVM
  * Filters
   * EchoFilter : outputs data during ant filtering. Useful for debuging
  * Mappers
