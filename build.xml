@@ -1,0 +1,30 @@
+<project name="utils4ant" default="dist">
+	<target name="init">
+		<property file="${user.name}.properties" />
+		<property file="build.properties" />
+	</target>
+
+	<target name="clean" depends="init">
+		<delete failonerror="false">
+			<fileset dir="${bin.dir}" />
+		</delete>
+	</target>
+
+	<target name="compile" depends="init">
+		<mkdir dir="${compile.dir}" />
+		<javac destdir="${compile.dir}" srcdir="${src.dir}" source="${source.level}" debug="on" target="${target.level}" includeantruntime="false">
+			<compilerarg line="-Xlint -Xlint:-unchecked"/>
+			<classpath>
+				<pathelement location="${lib.dir}/ant.jar" />
+				<pathelement location="${lib.dir}/ant-apache-log4j.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${ant.project.name}.jar">
+			<fileset dir="${compile.dir}" />
+		</jar>
+	</target>
+</project>
