@@ -13,7 +13,6 @@
 	<target name="compile" depends="init">
 		<mkdir dir="${compile.dir}" />
 		<javac destdir="${compile.dir}" srcdir="${src.dir}" source="${source.level}" debug="on" target="${target.level}" includeantruntime="false">
-			<compilerarg line="-Xlint -Xlint:-unchecked"/>
 			<classpath>
 				<pathelement location="${lib.dir}/ant.jar" />
 				<pathelement location="${lib.dir}/ant-apache-log4j.jar" />
