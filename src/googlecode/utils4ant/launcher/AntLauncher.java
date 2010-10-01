@@ -13,9 +13,25 @@ import org.apache.tools.ant.listener.Log4jListener;
 
 public class AntLauncher {
 	private String previousLog4jConfiguration = null;
-	
+
+	public void launch(File baseDir, File buildFile)
+			throws AntLauncherException {
+		launch(baseDir, buildFile, null, null, null);
+	}
+
+	public void launch(File baseDir, File buildFile, String target)
+			throws AntLauncherException {
+		launch(baseDir, buildFile, target, null, null);
+	}
+
 	public void launch(File baseDir, File buildFile, String target,
-			Properties inheritedProperties, File log4JPropertiesFile) throws AntLauncherException {
+			Properties inheritedProperties) throws AntLauncherException {
+		launch(baseDir, buildFile, target, inheritedProperties, null);
+	}
+
+	public void launch(File baseDir, File buildFile, String target,
+			Properties inheritedProperties, File log4JPropertiesFile)
+			throws AntLauncherException {
 		Project p = new Project();
 		p.initProperties();
 		p.setBaseDir(getBaseDir(baseDir, buildFile));
@@ -37,7 +53,7 @@ public class AntLauncher {
 		} else {
 			setupConsoleLogger(p);
 		}
-		
+
 		try {
 			p.fireBuildStarted();
 			p.init();
@@ -52,7 +68,8 @@ public class AntLauncher {
 			throw new AntLauncherException(e);
 		} finally {
 			if (previousLog4jConfiguration != null) {
-				System.setProperty("log4j.configuration", previousLog4jConfiguration);
+				System.setProperty("log4j.configuration",
+						previousLog4jConfiguration);
 			}
 		}
 	}
@@ -60,7 +77,7 @@ public class AntLauncher {
 	private String getBuildFile(File buildFile) {
 		return buildFile == null ? "build.xml" : buildFile.getAbsolutePath();
 	}
-	
+
 	private File getBaseDir(File baseDir, File buildFile) {
 		File res = baseDir;
 		if (res == null) {
@@ -72,22 +89,26 @@ public class AntLauncher {
 		}
 		return res;
 	}
-	
+
 	private void setupLog4J(Project p, File log4JPropertiesFile) {
 		previousLog4jConfiguration = System.getProperty("log4j.configuration");
 		try {
 			if (previousLog4jConfiguration != null) {
-				System.out.println("Warning: log4j.configuration system property existed before launching ant: log4j.configuration = " + previousLog4jConfiguration);
-				System.out.println("Warning: changing this value to " + log4JPropertiesFile.toURI().toURL().toString());
+				System.out
+						.println("Warning: log4j.configuration system property existed before launching ant: log4j.configuration = "
+								+ previousLog4jConfiguration);
+				System.out.println("Warning: changing this value to "
+						+ log4JPropertiesFile.toURI().toURL().toString());
 			}
-			System.setProperty("log4j.configuration", log4JPropertiesFile.toURI().toURL().toString());
+			System.setProperty("log4j.configuration", log4JPropertiesFile
+					.toURI().toURL().toString());
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
 		}
 		Log4jListener log4jListener = new Log4jListener();
 		p.addBuildListener(log4jListener);
 	}
-	
+
 	private void setupConsoleLogger(Project p) {
 		DefaultLogger consoleLogger = new DefaultLogger();
 		consoleLogger.setErrorPrintStream(System.err);
