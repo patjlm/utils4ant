@@ -24,6 +24,7 @@
 		<mkdir dir="${dist.dir}" />
 		<jar destfile="${dist.dir}/${ant.project.name}.jar">
 			<fileset dir="${compile.dir}" />
+			<fileset dir="${src.dir}" includes="**/*.properties" />
 		</jar>
 	</target>
 </project>
