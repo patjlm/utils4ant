@@ -27,4 +27,22 @@
 			<fileset dir="${src.dir}" includes="**/*.properties" />
 		</jar>
 	</target>
+
+	<target name="test-condition-filter">
+		<typedef resource="googlecode/utils4ant/typedef.properties">
+			<classpath>
+				<path path="bin;src" />
+				<fileset dir="lib" includes="*.jar" />
+			</classpath>
+		</typedef>
+		<property name="if1" value="true" />
+		<property name="elseif2" value="false" />
+		<concat>
+			<fileset file="test.txt.template" />
+			<filterchain>
+				<echofilter />
+				<conditionfilter />
+			</filterchain>
+		</concat>
+	</target>
 </project>
