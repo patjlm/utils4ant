@@ -19,6 +19,7 @@ package googlecode.utils4ant.selectors;
 
 import java.util.Iterator;
 
+import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.Resource;
 import org.apache.tools.ant.types.resources.selectors.ResourceSelector;
 import org.apache.tools.ant.types.resources.selectors.ResourceSelectorContainer;
@@ -55,7 +56,7 @@ public class MyAnd extends ResourceSelectorContainer implements ResourceSelector
                 ret = false;
             }
         }
-    	getProject().log("And Matching [" + r.getName() + "] = " + ret);
+    	getProject().log("And Matching [" + r.getName() + "] = " + ret, Project.MSG_DEBUG);
         return ret;
     }
 
