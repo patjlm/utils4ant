@@ -14,6 +14,8 @@ Tasks
 
 Filters
 * EchoFilter : outputs data during ant filtering. Useful for debuging
+* PatternFilter : filters based on a file pattern matcher
+* ConditionFilter : allows test (if / elseif / else) sections in a resource content going through a filterchain
 
 Mappers
 * EchoMapper : outputs data during ant mapping. Useful for debuging
