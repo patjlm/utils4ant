@@ -16,6 +16,7 @@
 			<classpath>
 				<pathelement location="${lib.dir}/ant.jar" />
 				<pathelement location="${lib.dir}/ant-apache-log4j.jar" />
+				<pathelement location="${lib.dir}/commons-compress-1.4.1.jar"/>
 			</classpath>
 		</javac>
 	</target>
